@@ -1,0 +1,48 @@
+{% extends "admin/index.html" %}
+{% block content %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <a id="refresh-users" data-toggle="tooltip" title="" class="pull-right" data-original-title="Refresh Panel">
+      <em class="fa fa-refresh"></em>
+    </a>Users
+  </div>
+  <div class="table-responsive" id="users-table">
+    <table id="table-ext-1" class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>UID</th>
+          <th>Steam ID</th>
+          <th>Username</th>
+          <th>Bets Placed</th>
+          <th>Items in Holding</th>
+          <th>Last Login</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody id="users-content"></tbody>
+    </table>
+  </div>
+  <!-- END table-responsive-->
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-lg-2">
+        <div class="input-group">
+          <input type="text" placeholder="Search" class="input-sm form-control">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-sm btn-default">Search</button>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-8"></div>
+      <div class="col-lg-2 text-right">
+        <ul class="pagination pagination-sm" id="users-pagination">
+          <li><a id="users-page-last"><em class="fa fa-arrow-left fa-2x"></em></a></li>
+          <li><a id="users-page-current" style="font-size: 20px"></a></li>
+          <li><a id="users-page-next"><em class="fa fa-arrow-right fa-2x"></em></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="user-modal-location"></div>
+{% endblock %}

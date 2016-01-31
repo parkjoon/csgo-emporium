@@ -1,0 +1,45 @@
+<div id="bet-modal" tabindex="-1" role="dialog" class="modal fade" style="display: block; padding-right: 17px;"><div class="modal-backdrop fade in" style="height: 969px;"></div>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" data-dismiss="modal" class="close">×</button>
+        <h2 id="bet-modal-header" class="modal-title" style="text-align: center;">
+          <%- match.teams.map(function (item) { return item.name }).join(" VS ") %>
+          </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row row-centered">
+          <div class="col-md-2 col-centered bet-slot">
+            <em style="font-size: 9em;" class="fa fa-question"></em>
+          </div>
+          <div class="col-md-2 col-centered bet-slot">
+            <em style="font-size: 9em;" class="fa fa-question"></em>
+          </div>
+          <div class="col-md-2 col-centered bet-slot">
+            <em style="font-size: 9em;" class="fa fa-question"></em>
+          </div>
+          <div class="col-md-2 col-centered bet-slot">
+            <em style="font-size: 9em;" class="fa fa-question"></em>
+          </div>
+        </div>
+        <div class="row-centered" style="margin-top: 10px;">
+          <% for (team in match.teams) { %>
+          <button type="button" class="mb-sm btn btn-success btn-placebet" data-team="<%= team %>">
+            <h4>Place bet on <%= match.teams[team].name %></h4>
+          </button>
+          <% } %>
+        </div>
+        <h2 style="text-align: center">Inventory</h2>
+        <div id="bet-inventory">
+          <div role="alert" class="alert alert-danger" style="display: none;" id="bet-inventory-load-failed">
+            <strong>Uh Oh!</strong> Looks like loading your inventory is taking a while. You can wait here for a few minutes, or try refreshing the page in a few!
+          </div>
+          <div id="bet-inventory-loader" class="whirl traditional" style="margin-top: 25px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export TESTING=1
+
+echo "Flushing and recreating the test database..."
+../db/manage.py -d emporium_test -u emporium_test -D -c -g -p=test
+
+echo "Flushing redis test database..."
+redis-cli -n 1 "flushall"
+
+echo "Forking test server..."
+./run web test &
+TEST_SERVER_PID=$!
+
+echo "Forking queue manager..."
+./run queue &
+QUEUE_MANAGER_PID=$!
+
+sleep 2
+
+echo "Running tests..."
+python -m unittest discover tests/ '*.py'
+RETURN_CODE=$?
+
+echo "Tests completed, killing test server... ($TEST_SERVER_PID, $QUEUE_MANAGER_PID)"
+pkill -TERM -P $TEST_SERVER_PID
+kill $QUEUE_MANAGER_PID
+
+exit $RETURN_CODE
